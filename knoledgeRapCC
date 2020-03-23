@@ -1,0 +1,58 @@
+
+
+1)CODE:
+my_append([], List2,  List2).
+
+my_append([Head|Tail], List2, [Head|Result]):-
+    
+	my_append(Tail, List2, Result).
+
+PROLOG:
+	?- my_append(L1, L2, [1,2,3,4]).
+
+2)It is possible, for example:
+PROLOG:
+?- my_append(L1, [4,5], [1,2,3,4,5]).
+L1 = [1, 2, 3] 
+
+3)The operator is makes a predicate not reversible
+
+CODE:
+
+/*
+my_add(N1, N2, R).
+it is true if R unify with 
+the sumatory of N1 and N2
+*/
+
+my_add(1, N2, N22):- N22 is N2 + 1.
+
+my_add(N1, N2, R2):-
+  N12 is N1 - 1, 
+  my_add(N12, N2, R),
+  R2 is R+1.
+  
+
+
+
+
+4)CODE:
+my_append([], List2,  List2).
+
+my_append([Head|Tail], List2, [Head|Result]):-
+    
+	my_append(Tail, List2, Result).
+	
+	
+my_reverse([], []).
+
+my_reverse([Head|Tail], R2):-
+
+  my_reverse(Tail, R),
+  append(R, [Head], R2).
+  
+  PROLOG:
+  ?- my_append(L1, L2, [1,2,3,4]),my_reverse(L2,R).
+L1 = [],
+L2 = [1, 2, 3, 4],
+R = [4, 3, 2, 1] 
